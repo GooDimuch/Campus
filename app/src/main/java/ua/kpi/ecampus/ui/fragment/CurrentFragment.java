@@ -8,23 +8,31 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Spinner;
+import android.widget.TextView;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import java.util.List;
 import javax.inject.Inject;
 import ua.kpi.ecampus.R;
+import ua.kpi.ecampus.model.pojo.Item;
 import ua.kpi.ecampus.model.pojo.VoteTeacher;
+import ua.kpi.ecampus.ui.adapter.ItemSpinnerAdapter;
+import ua.kpi.ecampus.ui.adapter.NothingSelectedAdapter;
 import ua.kpi.ecampus.ui.adapter.VotingAdapter;
-import ua.kpi.ecampus.ui.presenter.VotingStudentPresenter;
+import ua.kpi.ecampus.ui.presenter.CurrentPresenter;
 import ua.kpi.ecampus.ui.view.OnItemClickListener;
 
-public class CurrentFragment extends Fragment {
+public class CurrentFragment extends Fragment implements CurrentPresenter.IView{
 
   @Bind(R.id.recyclerview_teachers) RecyclerView mRecyclerView;
   @Bind(R.id.spinner_terms) Spinner mSpinnerTerms;
+  @Bind(R.id.tv_title_teachers) TextView mTitleTeachers;
 
-  @Inject VotingStudentPresenter mPresenter;
+  //@Inject CurrentPresenter mPresenter;
+  private CurrentPresenter mPresenter;
 
   private VotingAdapter mAdapter;
 
@@ -40,7 +48,45 @@ public class CurrentFragment extends Fragment {
       Bundle savedInstanceState) {
     View view = inflater.inflate(R.layout.fragment_current, container, false);
     ButterKnife.bind(this, view);
+    mPresenter = new CurrentPresenter();
+    mPresenter.setView(this);
+
+    mPresenter.loadVoting();
     return view;
+  }
+
+  @Override public void setTermsSpinner(List<Item> list) {
+    ArrayAdapter<Item> adapter =
+        new ItemSpinnerAdapter(getContext(), R.layout.spinner_item, R.layout.spinner_dropdown_item, list);
+    mSpinnerTerms.setAdapter(
+        new NothingSelectedAdapter(adapter, R.layout.spinner_nothing_selected_terms, getContext()));
+    mSpinnerTerms.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+
+      @Override
+      public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+        Item item = (Item) parent.getItemAtPosition(position);
+        if (item != null) {
+          if (mAdapter == null) {
+            mTitleTeachers.setVisibility(View.VISIBLE);
+            setRecyclerView();
+            mPresenter.setSpecificAdapter();
+          }
+          mAdapter.filterByTerm(item.getId());
+        }
+      }
+
+      @Override public void onNothingSelected(AdapterView<?> parent) {
+        // N/A
+      }
+    });
+  }
+
+  @Override public void setVoteInProgressAdapter(List<VoteTeacher> teachers) {
+    setVotingAdapter(teachers);
+  }
+
+  @Override public void setVoteEndedAdapter(List<VoteTeacher> teachers) {
+
   }
 
   private OnItemClickListener onItemClickListener =
