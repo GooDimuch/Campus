@@ -15,7 +15,6 @@ import android.widget.TextView;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import java.util.List;
-import javax.inject.Inject;
 import ua.kpi.ecampus.R;
 import ua.kpi.ecampus.model.pojo.Item;
 import ua.kpi.ecampus.model.pojo.VoteTeacher;
@@ -25,7 +24,7 @@ import ua.kpi.ecampus.ui.adapter.VotingAdapter;
 import ua.kpi.ecampus.ui.presenter.CurrentPresenter;
 import ua.kpi.ecampus.ui.view.OnItemClickListener;
 
-public class CurrentFragment extends Fragment implements CurrentPresenter.IView{
+public class CurrentFragment extends Fragment implements CurrentPresenter.IView {
 
   @Bind(R.id.recyclerview_teachers) RecyclerView mRecyclerView;
   @Bind(R.id.spinner_terms) Spinner mSpinnerTerms;
@@ -57,7 +56,8 @@ public class CurrentFragment extends Fragment implements CurrentPresenter.IView{
 
   @Override public void setTermsSpinner(List<Item> list) {
     ArrayAdapter<Item> adapter =
-        new ItemSpinnerAdapter(getContext(), R.layout.spinner_item, R.layout.spinner_dropdown_item, list);
+        new ItemSpinnerAdapter(getContext(), R.layout.spinner_item, R.layout.spinner_dropdown_item,
+            list);
     mSpinnerTerms.setAdapter(
         new NothingSelectedAdapter(adapter, R.layout.spinner_nothing_selected_terms, getContext()));
     mSpinnerTerms.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
