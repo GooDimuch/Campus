@@ -34,6 +34,8 @@ public class ArchiveFragment extends BaseFragment implements ArchivePresenter.IV
   //private ArchivePresenter mPresenter;
 
   private RatingAdapter mAdapter;
+  private int iPeriodSpinnerPosition;
+  private String sPeriodSpinner;
 
   public ArchiveFragment() {
     // Required empty public constructor
@@ -83,6 +85,7 @@ public class ArchiveFragment extends BaseFragment implements ArchivePresenter.IV
             mPresenter.setSpecificAdapter();
           }
           mAdapter.filterByTerm(item.getId());
+          iPeriodSpinnerPosition = position;
         }
       }
 
@@ -115,6 +118,8 @@ public class ArchiveFragment extends BaseFragment implements ArchivePresenter.IV
       Intent intent = new Intent(getContext(), ArchiveRatingActivity.class);
       intent.putExtra("teacher_name", mAdapter.getTeacherName(position));
       intent.putExtra("teacher_rating", mAdapter.getTeacherRating(position));
+      intent.putExtra("string_period", sPeriodSpinner);
+      intent.putExtra("int_period", iPeriodSpinnerPosition);
       startActivity(intent);
     });
   }
