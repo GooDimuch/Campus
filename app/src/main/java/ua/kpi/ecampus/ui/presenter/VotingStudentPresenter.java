@@ -9,27 +9,27 @@ import ua.kpi.ecampus.ui.Navigator;
 /**
  * Created by Administrator on 01.06.2016.
  */
+
 public class VotingStudentPresenter extends BasePresenter {
 
-    private IView mView;
-    private IDataAccessObject<VoteSet> mDataAccess;
-    private Navigator mNavigator;
+  private IView mView;
+  private IDataAccessObject<VoteSet> mDataAccess;
+  private Navigator mNavigator;
 
-    @Inject public VotingStudentPresenter(Navigator navigator) {
-        mDataAccess = new VotingDao();
-        mNavigator = navigator;
-    }
+  @Inject public VotingStudentPresenter(Navigator navigator) {
+    mDataAccess = new VotingDao();
+    mNavigator = navigator;
+  }
 
-    public void setView(IView view) {
-        mView = view;
-    }
+  public void setView(IView view) {
+    mView = view;
+  }
 
-    @Override
-    public void initializeViewComponent() {
-        mView.setViewComponent();
-    }
+  @Override public void initializeViewComponent() {
+    mView.setViewComponent();
+  }
 
-    public interface IView {
-        void setViewComponent();
-    }
+  public interface IView {
+    void setViewComponent();
+  }
 }

@@ -80,4 +80,8 @@ dependencies {
     androidTestCompile 'com.android.support.test:rules:1.0.1'
     androidTestCompile 'com.android.support.test.espresso:espresso-core:3.0.1'
     androidTestCompile 'com.android.support.test.espresso:espresso-intents:3.0.1'
+  implementation 'com.android.support.constraint:constraint-layout:1.0.2'
+    compile 'com.squareup.okhttp3:logging-interceptor:3.4.1'
+    //Timber
+    compile 'com.jakewharton.timber:timber:4.5.1'
 }

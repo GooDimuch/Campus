@@ -5,9 +5,12 @@ import java.util.concurrent.TimeUnit;
 import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
+import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
+import timber.log.Timber;
+import ua.kpi.ecampus.BuildConfig;
 
 /**
  * This class creates a new REST client with a given API_Endpoint.
@@ -31,6 +34,7 @@ public class ServiceCreator {
         CLIENT.connectTimeout(CONNECT_TIMEOUT, TimeUnit.SECONDS);
         CLIENT.writeTimeout(WRITE_TIMEOUT, TimeUnit.SECONDS);
         CLIENT.readTimeout(TIMEOUT, TimeUnit.SECONDS);
+        CLIENT.addInterceptor(provideHttpLoggingInterceptor());
     }
 
     private static Retrofit.Builder builder =
@@ -79,5 +83,13 @@ public class ServiceCreator {
         builder.client(httpClient);
         S apiInterface = builder.build().create(serviceClass);
         return apiInterface;
+    }
+
+   private static HttpLoggingInterceptor provideHttpLoggingInterceptor() {
+        HttpLoggingInterceptor interceptor =
+            new HttpLoggingInterceptor(message -> Timber.tag("response").d(message));
+        interceptor.setLevel(
+            BuildConfig.DEBUG ? HttpLoggingInterceptor.Level.BODY : HttpLoggingInterceptor.Level.BODY);
+        return interceptor;
     }
 }

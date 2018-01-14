@@ -2,6 +2,7 @@ package ua.kpi.ecampus;
 
 import android.app.Application;
 
+import timber.log.Timber;
 import ua.kpi.ecampus.di.RootModule;
 
 import java.util.List;
@@ -16,6 +17,10 @@ public class CampusApplication extends Application {
     public void onCreate() {
         super.onCreate();
         initializeDependencyInjector();
+        if (BuildConfig.DEBUG) {
+            Timber.plant(new Timber.DebugTree());
+
+        }
     }
 
     /**

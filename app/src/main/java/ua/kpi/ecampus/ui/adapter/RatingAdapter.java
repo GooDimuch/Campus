@@ -11,6 +11,7 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import java.util.ArrayList;
 import java.util.List;
+import timber.log.Timber;
 import ua.kpi.ecampus.R;
 import ua.kpi.ecampus.model.pojo.VoteTeacher;
 import ua.kpi.ecampus.ui.view.OnItemClickListener;
@@ -26,7 +27,6 @@ import static ua.kpi.ecampus.util.TermPredicates.isMatchesId;
  */
 public class RatingAdapter extends RecyclerView.Adapter<RatingAdapter.ViewHolder> {
 
-    private OnItemClickListener mListener;
     private List<VoteTeacher> mAllData = new ArrayList<>();
     private List<VoteTeacher> mCurrentData = new ArrayList<>();
 
@@ -99,15 +99,6 @@ public class RatingAdapter extends RecyclerView.Adapter<RatingAdapter.ViewHolder
     }
 
     /**
-     * Set listener which is invoked when a item is clicked.
-     *
-     * @param listener
-     */
-    public void setOnItemClickListener(OnItemClickListener listener) {
-        mListener = listener;
-    }
-
-    /**
      * Get position in adapter of item with specified id
      *
      * @param item
@@ -127,6 +118,7 @@ public class RatingAdapter extends RecyclerView.Adapter<RatingAdapter.ViewHolder
 
         @Bind(R.id.tv_teacher_name)
         TextView tvTeacherName;
+
         @Bind(R.id.tv_rating)
         TextView tvRating;
 
@@ -134,13 +126,23 @@ public class RatingAdapter extends RecyclerView.Adapter<RatingAdapter.ViewHolder
             super(itemView);
             ButterKnife.bind(this, itemView);
         }
-
         @OnClick(R.id.tv_rating)
         public void itemClick(View view) {
-            if (mListener != null) {
-                int pos = getAdapterPosition();
-                mListener.onItemClicked(view, pos, mCurrentData.get(pos));
-            }
+            Timber.wtf(String.valueOf(getAdapterPosition()));
+
+            //if (mListener != null) {
+            //    int pos = getAdapterPosition();
+            //    mListener.onItemClicked(view, pos, mCurrentData.get(pos));
+            //}
         }
+
+    }
+
+    public String getTeacherName(int position) {
+        return getItem(position).getTeacherName();
+    }
+
+    public String getTeacherRating(int position) {
+        return getItem(position).getAvgResult();
     }
 }

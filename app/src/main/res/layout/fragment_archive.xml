@@ -26,13 +26,14 @@
       android:layout_height="wrap_content">
 
     <Spinner
-        android:id="@+id/spinner_terms"
-        style="@style/Margin"
+        android:id="@+id/spinner_archive_terms"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginRight="16dp"
-        android:layout_marginTop="8dp"/>
+        android:layout_marginTop="8dp"
+        style="@style/Margin"
+        />
 
     <TextView
         android:layout_width="match_parent"
@@ -43,26 +44,28 @@
   </FrameLayout>
 
   <ua.kpi.ecampus.ui.view.TextViewDrawableSize
-      style="@style/Margin"
-      android:id="@+id/tv_title_teachers"
-      android:visibility="invisible"
+      android:id="@+id/tv_title_archive_teachers"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
       android:layout_marginTop="16dp"
-      android:gravity="center"
-      android:drawablePadding="16dp"
       android:drawableLeft="@drawable/icon_grad_hat"
+      android:drawablePadding="16dp"
+      android:gravity="center"
+      android:text="Викладачі"
       android:textSize="16sp"
+      android:textStyle="bold"
+      android:visibility="invisible"
       app:compoundDrawableHeight="28dp"
       app:compoundDrawableWidth="28dp"
-      android:text="Викладачі"
-      android:textStyle="bold"/>
+      style="@style/Margin"
+      />
 
   <android.support.v7.widget.RecyclerView
-      android:id="@+id/recyclerview_teachers"
+      android:id="@+id/recyclerview_archive_teachers"
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
+      android:scrollbars="vertical"
       android:visibility="gone"
-      android:scrollbars="vertical"/>
+      />
 
 </LinearLayout>

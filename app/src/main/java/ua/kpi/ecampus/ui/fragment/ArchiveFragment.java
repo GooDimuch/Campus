@@ -1,37 +1,37 @@
 package ua.kpi.ecampus.ui.fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 import android.widget.TextView;
 import butterknife.Bind;
-import butterknife.ButterKnife;
 import java.util.List;
+import javax.inject.Inject;
 import ua.kpi.ecampus.R;
 import ua.kpi.ecampus.model.pojo.Item;
 import ua.kpi.ecampus.model.pojo.VoteTeacher;
+import ua.kpi.ecampus.ui.activity.ArchiveRatingActivity;
 import ua.kpi.ecampus.ui.adapter.ItemSpinnerAdapter;
 import ua.kpi.ecampus.ui.adapter.NothingSelectedAdapter;
 import ua.kpi.ecampus.ui.adapter.RatingAdapter;
 import ua.kpi.ecampus.ui.presenter.ArchivePresenter;
 import ua.kpi.ecampus.ui.view.OnItemClickListener;
+import ua.kpi.ecampus.util.ItemClickSupport;
 
-public class ArchiveFragment extends Fragment implements ArchivePresenter.IView {
+public class ArchiveFragment extends BaseFragment implements ArchivePresenter.IView {
 
-  @Bind(R.id.recyclerview_teachers) RecyclerView mRecyclerView;
-  @Bind(R.id.spinner_terms) Spinner mSpinnerTerms;
-  @Bind(R.id.tv_title_teachers) TextView mTitleTeachers;
+  @Bind(R.id.recyclerview_archive_teachers) RecyclerView mRecyclerView;
+  @Bind(R.id.spinner_archive_terms) Spinner mSpinnerTerms;
+  @Bind(R.id.tv_title_archive_teachers) TextView mTitleTeachers;
 
-  //@Inject CurrentPresenter mPresenter;
-  private ArchivePresenter mPresenter;
+  @Inject ArchivePresenter mPresenter;
+  //private ArchivePresenter mPresenter;
 
   private RatingAdapter mAdapter;
 
@@ -43,15 +43,26 @@ public class ArchiveFragment extends Fragment implements ArchivePresenter.IView 
     super.onCreate(savedInstanceState);
   }
 
-  @Override public View onCreateView(LayoutInflater inflater, ViewGroup container,
-      Bundle savedInstanceState) {
-    View view = inflater.inflate(R.layout.fragment_current, container, false);
-    ButterKnife.bind(this, view);
-    mPresenter = new ArchivePresenter();
+  @Override public void onViewCreated(View view, Bundle savedInstanceState) {
+    super.onViewCreated(view, savedInstanceState);
     mPresenter.setView(this);
 
     mPresenter.loadVoting();
-    return view;
+  }
+
+  //@Override public View onCreateView(LayoutInflater inflater, ViewGroup container,
+  //    Bundle savedInstanceState) {
+  //  View view = inflater.inflate(R.layout.fragment_current, container, false);
+  //  ButterKnife.bind(this, view);
+  //  //mPresenter = new ArchivePresenter();
+  //  mPresenter.setView(this);
+  //
+  //  mPresenter.loadVoting();
+  //  return view;
+  //}
+
+  @Override protected int getFragmentLayout() {
+    return R.layout.fragment_archive;
   }
 
   @Override public void setTermsSpinner(List<Item> list) {
@@ -99,13 +110,19 @@ public class ArchiveFragment extends Fragment implements ArchivePresenter.IView 
         new DividerItemDecoration(getContext(), DividerItemDecoration.HORIZONTAL));
     mRecyclerView.setHasFixedSize(true);
     mRecyclerView.setSaveEnabled(true);
+
+    ItemClickSupport.addTo(mRecyclerView).setOnItemClickListener((recyclerView, position, v) -> {
+      Intent intent = new Intent(getContext(), ArchiveRatingActivity.class);
+      intent.putExtra("teacher_name", mAdapter.getTeacherName(position));
+      intent.putExtra("teacher_rating", mAdapter.getTeacherRating(position));
+      startActivity(intent);
+    });
   }
 
   private void setVotingAdapter(List<VoteTeacher> teachers) {
     mAdapter = new RatingAdapter();
     mAdapter.setAllItems(teachers);
     mAdapter.setHasStableIds(true);
-    mAdapter.setOnItemClickListener(onItemClickListener);
     mRecyclerView.setAdapter(mAdapter);
   }
 }

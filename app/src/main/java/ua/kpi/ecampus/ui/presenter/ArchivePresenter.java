@@ -29,10 +29,6 @@ public class ArchivePresenter extends BasePresenter {
     mNavigator = navigator;
   }
 
-  public ArchivePresenter() {
-    mDataAccess = new VotingDao();
-  }
-
   public void setView(IView view) {
     mView = view;
   }
@@ -51,8 +47,8 @@ public class ArchivePresenter extends BasePresenter {
     VoteSet vs = new VoteSet();
 
     List<VoteTerm> terms = new ArrayList<>();
-    terms.add(new VoteTerm(2, "2014-2015", "2014-09-01", "2015-09-01"));
     terms.add(new VoteTerm(1, "2015-2016", "2015-09-01", "2016-09-01"));
+    //terms.add(new VoteTerm(2, "2014-2015", "2014-09-01", "2015-09-01"));
     //terms.add(new VoteTerm(3, "2016-2017", "2016-09-01", "2017-09-01"));
     //terms.add(new VoteTerm(4, "2017-2018", "2017-09-01", "2018-09-01"));
 
@@ -74,7 +70,7 @@ public class ArchivePresenter extends BasePresenter {
     t = new VoteTeacher(1, 3, "Мелкумян Катерина Юріївна", false, "4.3");
     t.setCriteria(criteria);
     teachers.add(t);
-    t = new VoteTeacher(2, 4, "Олійник Волдимир Валентинович", false, "4" + ".3");
+    t = new VoteTeacher(1, 4, "Олійник Володимир Валентинович", false, "4.3");
     t.setCriteria(criteria);
     teachers.add(t);
 
