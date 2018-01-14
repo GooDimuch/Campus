@@ -62,7 +62,7 @@ public class MainPresenter extends BasePresenter {
             case 2:
                 break;
             case 3:
-                if(userIsStudent())
+                //if(userIsStudent())
                     mNavigator.startVotingStudentActivity();
                 break;
         }
