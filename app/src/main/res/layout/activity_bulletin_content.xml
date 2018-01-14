@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="ua.kpi.ecampus.ui.activity.BulletinContentActivity">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <include
+            android:id="@+id/toolbar"
+            layout="@layout/toolbar" />
+
+        <ua.kpi.ecampus.ui.view.TextViewDrawableSize
+            android:id="@+id/text_view_bulletin_theme"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/toolbar"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:layout_marginTop="24dp"
+            android:drawableLeft="@drawable/icon_calendar"
+            android:drawablePadding="24dp"
+            android:gravity="center"
+            android:text="Методичні ресурси"
+            android:textColor="@color/colorPrimaryText"
+            android:textSize="16sp"
+            app:compoundDrawableHeight="24dp"
+            app:compoundDrawableWidth="24dp" />
+
+        <TextView
+            android:id="@+id/text_view_bulletin_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/text_view_bulletin_theme"
+            android:layout_marginLeft="64dp"
+            android:layout_marginRight="16dp"
+            android:layout_marginTop="24dp"
+            android:text="До уваги всіх модераторів. До уваги всіх модераторів.До уваги всіх модераторів. До уваги всіх модераторів. "
+            android:textColor="@color/colorPrimaryText"
+            android:textSize="14sp" />
+
+        <ua.kpi.ecampus.ui.view.TextViewDrawableSize
+            android:id="@+id/bulletin_period"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/text_view_bulletin_text"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="24dp"
+            android:drawableLeft="@drawable/ic_action_action_query_builder"
+            android:drawablePadding="24dp"
+            android:gravity="center"
+            android:text="Період показу"
+            android:textColor="@color/colorSecondaryText"
+            android:textSize="13sp"
+            app:compoundDrawableHeight="24dp"
+            app:compoundDrawableWidth="24dp" />
+
+        <TextView
+            android:id="@+id/text_view_bulletin_start_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/text_view_bulletin_text"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="36dp"
+            android:layout_marginTop="31dp"
+            android:layout_toRightOf="@id/bulletin_period"
+            android:text="15.01.2016"
+            android:textColor="@color/colorSecondaryText"
+            android:textSize="12sp" />
+
+        <TextView
+            android:id="@+id/text_view_bulletin_end_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/text_view_bulletin_text"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="36dp"
+            android:layout_marginTop="31dp"
+            android:layout_toRightOf="@id/text_view_bulletin_start_date"
+            android:text="20.01.2016"
+            android:textColor="@color/colorSecondaryText"
+            android:textSize="12sp" />
+
+        <ua.kpi.ecampus.ui.view.TextViewDrawableSize
+            android:id="@+id/bulletin_author"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/bulletin_period"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="24dp"
+            android:drawableLeft="@drawable/ic_action_action_perm_identity"
+            android:drawablePadding="24dp"
+            android:gravity="center"
+            android:text="Публікатор"
+            android:textColor="@color/colorSecondaryText"
+            android:textSize="13sp"
+            app:compoundDrawableHeight="24dp"
+            app:compoundDrawableWidth="24dp" />
+
+        <TextView
+            android:id="@+id/text_view_bulletin_author"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/bulletin_period"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="36dp"
+            android:layout_marginTop="31dp"
+            android:layout_toRightOf="@id/bulletin_author"
+            android:text="Іваненко І.І."
+            android:textColor="@color/colorSecondaryText"
+            android:textSize="12sp" />
+
+    </RelativeLayout>
+</ScrollView>
