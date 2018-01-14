@@ -51,8 +51,10 @@ public class VotingStudentPresenter extends BasePresenter {
         VoteSet vs = new VoteSet();
 
         List<VoteTerm> terms = new ArrayList<>();
-        terms.add(new VoteTerm(1, "2015-2016", "2015-09-01", "2016-09-01"));
         terms.add(new VoteTerm(2, "2014-2015", "2014-09-01", "2015-09-01"));
+        terms.add(new VoteTerm(1, "2015-2016", "2015-09-01", "2016-09-01"));
+        //terms.add(new VoteTerm(3, "2016-2017", "2016-09-01", "2017-09-01"));
+        //terms.add(new VoteTerm(4, "2017-2018", "2017-09-01", "2018-09-01"));
 
         List<Rating> criteria = new ArrayList<>();
         criteria.add(new Rating(3F, "1"));
