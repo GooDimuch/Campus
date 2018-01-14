@@ -76,8 +76,7 @@
     <activity
         android:name=".ui.activity.ArchiveRatingActivity"
         android:parentActivityName=".ui.activity.VotingStudentActivity"
-        android:screenOrientation="portrait"
-        android:theme="@style/AppTheme.NoActionBar">
+        android:screenOrientation="portrait">
     </activity>
   </application>
 

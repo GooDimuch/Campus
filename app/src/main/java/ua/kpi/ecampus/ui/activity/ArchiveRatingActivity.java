@@ -53,9 +53,9 @@ public class ArchiveRatingActivity extends BaseActivity implements ArchiveRating
     mPresenter.loadVoting();
   }
 
-  private void fillActivity(String period) {
+  private void fillActivity() {
     tvTeacherName.setText(getIntent().getStringExtra("teacher_name"));
-    tvPeriod.setText(period);
+    tvPeriod.setText(getIntent().getStringExtra("string_period"));
     tvTeacherRating.setText(getIntent().getStringExtra("teacher_rating"));
     tvRating1.setText("3.97");
     tvRating2.setText("4.21");
@@ -88,6 +88,8 @@ public class ArchiveRatingActivity extends BaseActivity implements ArchiveRating
         new ItemSpinnerAdapter(this, R.layout.spinner_item, R.layout.spinner_dropdown_item, list);
     spinnerRatingTerms.setAdapter(
         new NothingSelectedAdapter(adapter, R.layout.spinner_nothing_selected_terms, this));
+    spinnerRatingTerms.setSelection(getIntent().getIntExtra("int_period", 0));
+    fillActivity();
     spinnerRatingTerms.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
 
       @Override
@@ -95,7 +97,7 @@ public class ArchiveRatingActivity extends BaseActivity implements ArchiveRating
         Item item = (Item) parent.getItemAtPosition(position);
         if (item != null) {
           clTeacherRating.setVisibility(ConstraintLayout.VISIBLE);
-          fillActivity(item.getName());
+          fillActivity();
         }
       }
 
