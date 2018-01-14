@@ -101,13 +101,14 @@ public class VotingStudentPresenter extends BasePresenter {
     public void setSpecificAdapter() {
         VoteSet voting = getVoting();
         VoteTerm latestTerm = voting.getTerms().get(0);
-        if (isVotePeriod(latestTerm.getDateStop())) {
-            // voting adapter
-            mView.setVoteInProgressAdapter(voting.getTeachers());
-        } else {
-            // resulting adapter
-            mView.setVoteEndedAdapter(voting.getTeachers());
-        }
+        //if (isVotePeriod(latestTerm.getDateStop())) {
+        //    // voting adapter
+        //    mView.setVoteInProgressAdapter(voting.getTeachers());
+        //} else {
+        //    // resulting adapter
+        //    mView.setVoteEndedAdapter(voting.getTeachers());
+        //}
+        mView.setVoteInProgressAdapter(voting.getTeachers());
     }
 
     public VoteSet getVoting() {
