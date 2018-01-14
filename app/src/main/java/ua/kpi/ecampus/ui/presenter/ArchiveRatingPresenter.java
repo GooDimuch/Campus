@@ -27,6 +27,7 @@ public class ArchiveRatingPresenter extends BasePresenter {
     // load
     makeStubData();
     setResult();
+    Timber.e("loadVoting");
   }
 
   private void makeStubData() {
