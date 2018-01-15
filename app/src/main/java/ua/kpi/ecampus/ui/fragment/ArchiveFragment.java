@@ -103,9 +103,6 @@ public class ArchiveFragment extends BaseFragment implements ArchivePresenter.IV
 
   }
 
-  private OnItemClickListener onItemClickListener =
-      (view, position, item) -> mPresenter.onItemClick(item);
-
   private void setRecyclerView() {
     mRecyclerView.setVisibility(View.VISIBLE);
     mRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));

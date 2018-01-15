@@ -12,15 +12,15 @@ import butterknife.Bind;
 import java.util.ArrayList;
 import java.util.List;
 import javax.inject.Inject;
+import timber.log.Timber;
 import ua.kpi.ecampus.R;
 import ua.kpi.ecampus.di.UIModule;
 import ua.kpi.ecampus.model.pojo.Item;
 import ua.kpi.ecampus.ui.adapter.ItemSpinnerAdapter;
 import ua.kpi.ecampus.ui.adapter.NothingSelectedAdapter;
-import ua.kpi.ecampus.ui.adapter.VotingAdapter;
 import ua.kpi.ecampus.ui.presenter.ArchiveRatingPresenter;
 
-public class ArchiveRatingActivity extends BaseActivity implements ArchiveRatingPresenter.IView{
+public class ArchiveRatingActivity extends BaseActivity implements ArchiveRatingPresenter.IView {
 
   @Bind(R.id.clTeacherRating) ConstraintLayout clTeacherRating;
   @Bind(R.id.spinnerRatingTerms) Spinner spinnerRatingTerms;
@@ -86,8 +86,7 @@ public class ArchiveRatingActivity extends BaseActivity implements ArchiveRating
   @Override public void setTermsSpinner(List<Item> list) {
 
     ArrayAdapter<Item> adapter =
-        new ItemSpinnerAdapter(this, R.layout.spinner_item, R.layout.spinner_dropdown_item,
-            list);
+        new ItemSpinnerAdapter(this, R.layout.spinner_item, R.layout.spinner_dropdown_item, list);
     spinnerRatingTerms.setAdapter(
         new NothingSelectedAdapter(adapter, R.layout.spinner_nothing_selected_terms, this));
     spinnerRatingTerms.setSelection(getIntent().getIntExtra("int_period", 0));
@@ -109,11 +108,17 @@ public class ArchiveRatingActivity extends BaseActivity implements ArchiveRating
     });
   }
 
+
+
   private void setToolbar() {
     setSupportActionBar(mToolbar);
     getSupportActionBar().setHomeButtonEnabled(true);
     getSupportActionBar().setDisplayShowHomeEnabled(true);
     mToolbar.setNavigationIcon(R.mipmap.ic_action_navigation_arrow_back);
+    mToolbar.setNavigationOnClickListener(v -> {
+      Timber.e("click");
+      finish();
+    });
     getSupportActionBar().setTitle(R.string.activity_name_voting);
   }
 }

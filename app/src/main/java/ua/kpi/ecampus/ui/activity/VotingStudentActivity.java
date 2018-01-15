@@ -9,6 +9,7 @@ import butterknife.Bind;
 import java.util.ArrayList;
 import java.util.List;
 import javax.inject.Inject;
+import timber.log.Timber;
 import ua.kpi.ecampus.Config;
 import ua.kpi.ecampus.R;
 import ua.kpi.ecampus.di.UIModule;
@@ -56,7 +57,7 @@ public class VotingStudentActivity extends BaseActivity implements VotingStudent
   @Override protected void onActivityResult(int requestCode, int resultCode, Intent data) {
     if (resultCode == RESULT_OK && requestCode == Config.REQUEST_CODE) {
       VoteTeacher teacher = data.getParcelableExtra(Config.KEY_TEACHER);
-      mAdapter.updateItem(teacher);
+      //mAdapter.updateItem(teacher);
     }
   }
 
@@ -65,6 +66,10 @@ public class VotingStudentActivity extends BaseActivity implements VotingStudent
     getSupportActionBar().setHomeButtonEnabled(true);
     getSupportActionBar().setDisplayShowHomeEnabled(true);
     mToolbar.setNavigationIcon(R.mipmap.ic_action_navigation_arrow_back);
+    mToolbar.setNavigationOnClickListener(v -> {
+      Timber.e("click");
+      finish();
+    });
     getSupportActionBar().setTitle(R.string.activity_name_voting);
   }
 }
