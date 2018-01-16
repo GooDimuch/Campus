@@ -86,6 +86,7 @@ public class ArchiveFragment extends BaseFragment implements ArchivePresenter.IV
           }
           mAdapter.filterByTerm(item.getId());
           iPeriodSpinnerPosition = position;
+          sPeriodSpinner = item.getName();
         }
       }
 
