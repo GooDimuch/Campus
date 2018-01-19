@@ -2,6 +2,7 @@ package ua.kpi.ecampus.loader;
 
 import android.content.Context;
 
+import timber.log.Timber;
 import ua.kpi.ecampus.api.response.BaseResponse;
 import ua.kpi.ecampus.api.response.RequestResult;
 import ua.kpi.ecampus.api.response.TokenResponse;
@@ -39,6 +40,7 @@ public class TokenLoader extends BaseLoader {
         Call<Token> call = service.auth(mUsername, mPassword, mGrantType);
         Response<Token> resp = call.execute();
         Token token = resp.body();
+        Timber.e("apiCall token " + token.getAccessToken());
 
         return new TokenResponse()
                 .setRequestResult(RequestResult.OK)

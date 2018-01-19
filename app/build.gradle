@@ -84,4 +84,7 @@ dependencies {
     compile 'com.squareup.okhttp3:logging-interceptor:3.4.1'
     //Timber
     compile 'com.jakewharton.timber:timber:4.5.1'
+    //lombok
+    compile "org.projectlombok:lombok:1.16.18"
+    annotationProcessor "org.projectlombok:lombok:1.16.10"
 }
