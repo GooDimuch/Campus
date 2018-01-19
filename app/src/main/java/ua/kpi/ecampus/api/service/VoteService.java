@@ -16,6 +16,9 @@ public interface VoteService {
       @Header("Authorization") String authorization);
 
   // TODO: 19.01.2018 сервер не возвращает никаких сущьностей , поэтому Void,нужно написать сущность
-  @GET("t") Observable<Void> getVoteTermIdLecturer(
+  @GET("/vote/term/{voteTermId}/lecturer") Observable<Void> getVoteTermIdLecturer(
       @Path("voteTermId") String voteTermId, @Header("Authorization") String authorization);
+
+  @GET("/vote/term/finished") Observable<List<VoteTermCurrent>> getVoteTermFinished(
+      @Header("Authorization") String authorization);
 }
