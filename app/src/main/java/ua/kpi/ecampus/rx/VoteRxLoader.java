@@ -15,7 +15,11 @@ public class VoteRxLoader {
 
   public Observable<List<VoteTermCurrent>> getVoteTermCurrent() {
     VoteService service = ServiceCreator.createService(VoteService.class);
-    return
-        service.getVoteTermCurrent("bearer " + User.getInstance().token);
+    return service.getVoteTermCurrent("bearer " + User.getInstance().token);
+  }
+
+  public Observable<Void> getVoteTermIdLecturer(String voteTermId) {
+    VoteService service = ServiceCreator.createService(VoteService.class);
+    return service.getVoteTermIdLecturer(voteTermId,"bearer " + User.getInstance().token);
   }
 }
