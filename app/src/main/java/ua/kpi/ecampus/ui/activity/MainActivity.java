@@ -9,18 +9,14 @@ import android.view.MenuItem;
 import android.view.animation.Animation;
 import android.view.animation.ScaleAnimation;
 import android.widget.GridView;
-
+import butterknife.Bind;
+import java.util.LinkedList;
+import java.util.List;
+import javax.inject.Inject;
 import ua.kpi.ecampus.di.UIModule;
 import ua.kpi.ecampus.model.Subsystem;
 import ua.kpi.ecampus.ui.adapter.GridSubsystemAdapter;
 import ua.kpi.ecampus.ui.presenter.MainPresenter;
-
-import java.util.LinkedList;
-import java.util.List;
-
-import javax.inject.Inject;
-
-import butterknife.Bind;
 
 /**
  * Main activity for application.

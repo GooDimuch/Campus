@@ -85,6 +85,6 @@ dependencies {
     //Timber
     compile 'com.jakewharton.timber:timber:4.5.1'
     //lombok
-    compile "org.projectlombok:lombok:1.16.18"
-    annotationProcessor "org.projectlombok:lombok:1.16.10"
+    compileOnly 'org.projectlombok:lombok:1.16.20'
+    annotationProcessor 'org.projectlombok:lombok:1.16.20'
 }

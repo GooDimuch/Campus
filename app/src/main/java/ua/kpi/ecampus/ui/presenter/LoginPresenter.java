@@ -1,9 +1,7 @@
 package ua.kpi.ecampus.ui.presenter;
 
 import android.os.Bundle;
-
 import javax.inject.Inject;
-
 import ua.kpi.ecampus.Config;
 import ua.kpi.ecampus.api.response.BaseResponse;
 import ua.kpi.ecampus.model.pojo.Token;
@@ -11,8 +9,6 @@ import ua.kpi.ecampus.model.pojo.User;
 import ua.kpi.ecampus.rx.UserRxLoader;
 import ua.kpi.ecampus.ui.Navigator;
 import ua.kpi.ecampus.ui.Preference;
-
-import javax.inject.Inject;
 
 /**
  * LoginPresenter created to manage LoginActivity.

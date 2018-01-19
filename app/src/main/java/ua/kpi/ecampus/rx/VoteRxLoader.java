@@ -4,7 +4,6 @@ import java.util.List;
 import rx.Observable;
 import ua.kpi.ecampus.api.service.ServiceCreator;
 import ua.kpi.ecampus.api.service.VoteService;
-import ua.kpi.ecampus.model.pojo.Bulletin;
 import ua.kpi.ecampus.model.pojo.User;
 import ua.kpi.ecampus.model.pojo.VoteTermCurrent;
 
@@ -14,9 +13,9 @@ import ua.kpi.ecampus.model.pojo.VoteTermCurrent;
 
 public class VoteRxLoader {
 
-  public void getVoteTermCurrent() {
+  public Observable<List<VoteTermCurrent>> getVoteTermCurrent() {
     VoteService service = ServiceCreator.createService(VoteService.class);
-    Observable<List<VoteTermCurrent>> observable =
+    return
         service.getVoteTermCurrent("bearer " + User.getInstance().token);
   }
 }
