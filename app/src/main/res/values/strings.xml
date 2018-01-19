@@ -70,4 +70,5 @@
   <string name="hello_blank_fragment">Hello blank fragment</string>
   <string name="category_current">Поточне</string>
   <string name="category_archive">Архiв</string>
+  <string name="sNotToday">на сьогоднi опитування не вiдбуваеться</string>
 </resources>

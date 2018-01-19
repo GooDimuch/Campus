@@ -27,20 +27,35 @@
 
     <Spinner
         android:id="@+id/spinner_archive_terms"
+        style="@style/Margin"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginRight="16dp"
-        android:layout_marginTop="8dp"
-        style="@style/Margin"
-        />
+        android:layout_marginTop="8dp"/>
 
-    <TextView
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text=""/>
-
-
+        android:layout_marginEnd="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:orientation="horizontal"
+        >
+      <TextView
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:text="Стан:\t"
+          />
+      <TextView
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:text="@string/sNotToday"
+          android:textColor="@color/colorPrimary"
+          />
+    </LinearLayout>
   </FrameLayout>
 
   <ua.kpi.ecampus.ui.view.TextViewDrawableSize
